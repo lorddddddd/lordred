@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الرب</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: white;
+      text-align: center;
+      background: url('https://cnn-arabic-images.cnn.io/cloudinary/image/upload/w_1100,c_scale,q_auto/cnnarabic/2014/02/07/images/56645.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: -1;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .profile-pic {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid white;
+      margin-bottom: 20px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.6);
+      opacity: 0;
+      transform: translateY(-50px);
+      animation: fallIn 1s forwards 0.5s;
+    }
+    h1 {
+      margin-bottom: 40px;
+      font-size: 32px;
+      text-shadow: 2px 2px 8px #000;
+      opacity: 0;
+      transform: translateY(-50px);
+      animation: fallIn 1s forwards 1s;
+    }
+    .btn {
+      display: block;
+      width: 220px;
+      margin: 15px auto;
+      padding: 14px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      background: transparent;
+      border: 2px solid red;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 10px rgba(255,0,0,0.7);
+      opacity: 0;
+      transform: translateY(-50px);
+      animation: fallIn 1s forwards;
+    }
+    .btn:nth-of-type(1) { animation-delay: 1.5s; }
+    .btn:nth-of-type(2) { animation-delay: 2s; }
+    .btn:hover {
+      background: red;
+      color: white;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255,0,0,1);
+    }
+    @keyframes fallIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 480px) {
+      .profile-pic { width: 120px; height: 120px; margin-bottom: 15px; }
+      h1 { font-size: 24px; margin-bottom: 25px; }
+      .btn { width: 180px; padding: 12px; font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://tryhackme-images.s3.amazonaws.com/user-avatars/6201c761dc6926005b09c562-1703176872773" 
+         alt="My Photo" class="profile-pic">
+    <h1> ☤ A Royal Greeting from Lord ☤ </h1>
+
+    <button class="btn" onclick="window.open('https://t.me/mmmmx4','_blank')">Telegram</button>
+    <button class="btn" onclick="playSong()">Моя песня</button>
+
+    <!-- iframe لتشغيل أغنية YouTube بشكل متوافق مع iPhone -->
+    <iframe id="youtubeSong" width="1" height="1"
+      src="https://www.youtube.com/embed/W0QqDKQSvHg?enablejsapi=1"
+      frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
+
+  <script>
+    function playSong() {
+      var iframe = document.getElementById('youtubeSong');
+      iframe.style.width = "1px";   // صغير جدًا بدل المخفي
+      iframe.style.height = "1px";
+
+      // تشغيل الفيديو عبر YouTube API
+      iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+    }
+  </script>
+</body>
+</html>
